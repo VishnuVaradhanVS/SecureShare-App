@@ -4,9 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,10 +22,8 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,10 +38,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.secureshare.ui.theme.LightBlue
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -81,10 +75,10 @@ fun Signup(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) 
     AnimatedVisibility(
         visible = visibleSignup.value,
         enter = slideInVertically(
-            initialOffsetY = { it }, // full height → slide from bottom
-            animationSpec = tween(800) // duration 600ms
+            initialOffsetY = { it },
+            animationSpec = tween(800)
         ), exit = slideOutVertically(
-            targetOffsetY = { it }, // slide down when hidden
+            targetOffsetY = { it },
             animationSpec = tween(800)
         )
     ) {
@@ -93,11 +87,7 @@ fun Signup(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) 
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .clip(RoundedCornerShape(32.dp, 32.dp))
-//                .background(color = Color.White)
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
-//                .border(
-//                    2.dp, color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(32.dp, 32.dp)
-//                )
                 .padding(32.dp), contentAlignment = Alignment.Center
         ) {
             LazyColumn(
@@ -110,11 +100,9 @@ fun Signup(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) 
                         "SIGNUP",
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
-//                        color = LightBlue
                         color = MaterialTheme.colorScheme.primary
                     )
-                    Spacer(Modifier.height(16.dp))
-                    Spacer(Modifier.height(32.dp))
+                    Spacer(Modifier.height(48.dp))
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = userName.value,
@@ -193,7 +181,6 @@ fun Signup(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) 
                             }
                         },
                         elevation = ButtonDefaults.elevatedButtonElevation(8.dp),
-//                        colors = ButtonDefaults.buttonColors(LightBlue)
                         colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
                     ) {
                         Text("Create Account")

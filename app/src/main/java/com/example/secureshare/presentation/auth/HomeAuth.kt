@@ -16,10 +16,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +31,6 @@ import com.example.secureshare.presentation.auth.HomeAuthComponent
 import com.example.secureshare.presentation.auth.HomeAuthViewmodel
 import com.example.secureshare.presentation.auth.ResetPassword
 import com.example.secureshare.presentation.auth.Signup
-import com.example.secureshare.ui.theme.LightBlue
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -58,7 +55,6 @@ fun HomeAuth(
     Box(
         modifier = Modifier
             .fillMaxSize()
-//            .background(color = LightBlue),
             .background(color = MaterialTheme.colorScheme.primary),
         contentAlignment = Alignment.Center
     ) {
@@ -103,7 +99,6 @@ fun HomeAuth(
         }
     }
 }
-
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Preview(showBackground = true)

@@ -1,6 +1,5 @@
 package com.example.secureshare.presentation
 
-import android.R
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -8,11 +7,11 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,11 +47,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import com.example.secureshare.presentation.auth.HomeAuthComponent
 import com.example.secureshare.presentation.auth.HomeAuthViewmodel
-import com.example.secureshare.ui.theme.LightBlue
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -81,10 +77,10 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
     AnimatedVisibility(
         visible = visibleLogin.value,
         enter = slideInVertically(
-            initialOffsetY = { it }, // full height → slide from bottom
-            animationSpec = tween(800) // duration 600ms
+            initialOffsetY = { it },
+            animationSpec = tween(800)
         ), exit = slideOutVertically(
-            targetOffsetY = { it }, // slide down when hidden
+            targetOffsetY = { it },
             animationSpec = tween(800)
         )
     ) {
@@ -93,11 +89,7 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .clip(RoundedCornerShape(32.dp, 32.dp))
-//                .background(color = Color.White)
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
-//                .border(
-//                    2.dp, color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(32.dp, 32.dp)
-//                )
                 .padding(32.dp), contentAlignment = Alignment.Center
         ) {
             LazyColumn(
@@ -110,7 +102,6 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                         "LOGIN",
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
-//                        color = LightBlue
                         color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(Modifier.height(16.dp))
@@ -123,20 +114,22 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                         },
                         placeholder = { Text("Username") },
                         supportingText = {
-                            Text(
-                                "Forgot Username?",
-                                textAlign = TextAlign.End,
-                                modifier = Modifier.fillMaxWidth().clickable(
-                                    onClick = {
-                                        coroutineScope.launch {
-                                            visibleLogin.value = !visibleLogin.value
-                                            delay(800)
-                                            homeAuthViewmodel.homeAuthComponent.value = HomeAuthComponent.FORGOTUSERNAME
-                                        }
+                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                                Text(
+                                    "Forgot Username?",
+                                    textAlign = TextAlign.End,
+                                    modifier = Modifier.clickable(
+                                        onClick = {
+                                            coroutineScope.launch {
+                                                visibleLogin.value = !visibleLogin.value
+                                                delay(800)
+                                                homeAuthViewmodel.homeAuthComponent.value = HomeAuthComponent.FORGOTUSERNAME
+                                            }
 
-                                    }
+                                        }
+                                    )
                                 )
-                            )
+                            }
                         },
                         shape = RoundedCornerShape(32.dp),
                         singleLine = true
@@ -151,17 +144,19 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                         placeholder = { Text("Password") },
                         singleLine = true,
                         supportingText = {
-                            Text(
-                                "Forgot Password?",
-                                textAlign = TextAlign.End,
-                                modifier = Modifier.fillMaxWidth().clickable(onClick = {
-                                    coroutineScope.launch {
-                                        visibleLogin.value = !visibleLogin.value
-                                        delay(800)
-                                        homeAuthViewmodel.homeAuthComponent.value = HomeAuthComponent.FORGOTPASSWORD
-                                    }
-                                })
-                            )
+                            Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.End) {
+                                Text(
+                                    "Forgot Password?",
+                                    textAlign = TextAlign.End,
+                                    modifier = Modifier.clickable(onClick = {
+                                        coroutineScope.launch {
+                                            visibleLogin.value = !visibleLogin.value
+                                            delay(800)
+                                            homeAuthViewmodel.homeAuthComponent.value = HomeAuthComponent.FORGOTPASSWORD
+                                        }
+                                    })
+                                )
+                            }
                         },
                         shape = RoundedCornerShape(32.dp),
                         suffix = {
@@ -190,7 +185,6 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                             }
                         },
                         elevation = ButtonDefaults.elevatedButtonElevation(8.dp),
-//                        colors = ButtonDefaults.buttonColors(LightBlue)
                         colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
                     ) {
                         Text("Login")
@@ -205,7 +199,6 @@ fun Login(modifier: Modifier = Modifier, homeAuthViewmodel: HomeAuthViewmodel) {
                             homeAuthViewmodel.homeAuthComponent.value = HomeAuthComponent.SIGNUP
                         }
                     }, border = BorderStroke(2.dp,
-//                        color = LightBlue
                         color = MaterialTheme.colorScheme.primary
                     )) {
                         Text("Sign up")

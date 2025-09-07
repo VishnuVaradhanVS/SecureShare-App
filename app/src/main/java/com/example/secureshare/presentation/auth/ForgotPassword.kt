@@ -4,10 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -19,15 +16,9 @@ import androidx.compose.foundation.layout.imeNestedScroll
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,14 +29,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.secureshare.ui.theme.LightBlue
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -68,10 +54,10 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
     AnimatedVisibility(
         visible = visibleForgotPassword.value,
         enter = slideInVertically(
-            initialOffsetY = { it }, // full height → slide from bottom
-            animationSpec = tween(800) // duration 600ms
+            initialOffsetY = { it },
+            animationSpec = tween(800)
         ), exit = slideOutVertically(
-            targetOffsetY = { it }, // slide down when hidden
+            targetOffsetY = { it },
             animationSpec = tween(800)
         )
     ) {
@@ -80,11 +66,7 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .clip(RoundedCornerShape(32.dp, 32.dp))
-//                .background(color = Color.White)
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
-//                .border(
-//                    2.dp, color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(32.dp, 32.dp)
-//                )
                 .padding(32.dp), contentAlignment = Alignment.Center
         ) {
             LazyColumn(
@@ -97,7 +79,6 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
                         "RESET PASSWORD",
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
-//                        color = LightBlue
                         color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(Modifier.height(16.dp))
@@ -126,8 +107,7 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
                             shape = RoundedCornerShape(32.dp),
                             singleLine = true,
                         )
-                        Spacer(Modifier.height(12.dp))
-                        Spacer(Modifier.height(12.dp))
+                        Spacer(Modifier.height(24.dp))
                         Button(
                             modifier = Modifier.fillMaxWidth(),
                             onClick = {
@@ -138,13 +118,11 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
                                 }
                             },
                             elevation = ButtonDefaults.elevatedButtonElevation(8.dp),
-//                            colors = ButtonDefaults.buttonColors(LightBlue)
                             colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
                         ) {
                             Text("Resend OTP")
                         }
-                        Spacer(Modifier.height(12.dp))
-                        Spacer(Modifier.height(12.dp))
+                        Spacer(Modifier.height(24.dp))
                     }
                     Button(
                         modifier = Modifier.fillMaxWidth(),
@@ -160,7 +138,6 @@ fun ForgotPassword(modifier: Modifier = Modifier,homeAuthViewmodel: HomeAuthView
                             }
                         },
                         elevation = ButtonDefaults.elevatedButtonElevation(8.dp),
-//                        colors = ButtonDefaults.buttonColors(LightBlue)
                         colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
                     ) {
                         Text(if(visibleOtp.value)"Verify" else "Send OTP")
