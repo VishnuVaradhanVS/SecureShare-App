@@ -49,7 +49,7 @@ fun HomeAuth(
     }
     LaunchedEffect(validAccount) {
         if (validAccount) {
-            navController.navigate(Screen.Dashboard.route)
+            navController.navigate(Screen.HomeScreen.route)
         }
     }
     Box(
@@ -95,7 +95,7 @@ fun HomeAuth(
     }
     LaunchedEffect(validAccount) {
         if (validAccount) {
-            navController.navigate(Screen.Dashboard.route)
+            navController.navigate(Screen.HomeScreen.route)
         }
     }
 }
